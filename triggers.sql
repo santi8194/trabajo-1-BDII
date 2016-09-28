@@ -48,8 +48,7 @@ CREATE OR REPLACE TRIGGER Consistencia_hora BEFORE INSERT ON LUGAR FOR EACH ROW
     k NUMBER := 0;
   BEGIN
     FOR curs IN (SELECT :new.ID, y.* --esta consulta saca todos los eventos con sus lugares, fecha y hora
-                      FROM LUGAR l,
-                            XMLTABLE('/eventos/evento'
+                      FROM XMLTABLE('/eventos/evento'
                               PASSING :new.EVENTOS
                               COLUMNS
                                 hora_inicio  VARCHAR2(5) PATH 'hora_inicio',
